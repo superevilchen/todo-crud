@@ -6,13 +6,7 @@ import { yupResolver } from '@hookform/resolvers/yup'
 import * as yup from 'yup'
 import notify, { SccMsg } from '../utils/Notification';
 import { TaskProps } from './Task';
-
-const schema = yup.object().shape({
-    title: yup.string().required(),
-    description: yup.string().required(),
-    whenToDo: yup.date().required(),
-    groupType: yup.string().required(),
-})
+import { schema } from './AddTask';
 
 function UpdateTask({task} : TaskProps) {
 

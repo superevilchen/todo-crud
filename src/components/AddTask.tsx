@@ -6,7 +6,7 @@ import axios from 'axios';
 import { TaskModel } from './TaskModel';
 import notify, { ErrMsg, SccMsg } from '../utils/Notification';
 
-const schema = yup.object().shape({
+export const schema = yup.object().shape({
     title: yup.string().required(),
     description: yup.string().required(),
     whenToDo: yup.date().required(),
