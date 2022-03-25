@@ -1,6 +1,7 @@
 import axios from 'axios';
 import React, { useState } from 'react'
 import { useEffect } from 'react';
+import { getTasks } from '../utils/Networking/TasksApi';
 import notify, { ErrMsg, SccMsg } from '../utils/Notification';
 import EmptyTaskList from './EmptyTaskList';
 import Task from './Task';
@@ -10,10 +11,6 @@ import { TaskModel } from './TaskModel';
 function TaskList() {
 
     const [tasks, tasksSet] = useState<TaskModel[]>([]);
-
-    const getTasks = async () => {
-        return await axios.get('http://localhost:8080/api/v1/todolist/')
-    }
 
     useEffect(() => {
         getTasks()

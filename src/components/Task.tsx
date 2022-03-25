@@ -2,16 +2,19 @@ import axios from 'axios';
 import React from 'react'
 import { Link, Routes } from 'react-router-dom';
 import { formatDate } from '../utils/DateFormatter';
+import { deleteTask } from '../utils/Networking/TasksApi';
 import notify, { SccMsg } from '../utils/Notification';
 import { TaskModel } from './TaskModel'
 import UpdateTask from './UpdateTask';
 
-export interface TaskProps{ 
+export interface TaskProps{
     task: TaskModel;
 }
 
-const onDelete = async (id: number) => {
-  await axios.delete(`http://localhost:8080/api/v1/todolist/${id}`)
+// const onDelete = async (id: number) => {
+//   await axios.delete(`http://localhost:8080/api/v1/todolist/${id}`)
+const onDelete = (id: number) => {
+  deleteTask(id)
     .then(response => {
     notify.success(SccMsg.DELETED_TASK)
     })

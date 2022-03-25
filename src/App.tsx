@@ -13,7 +13,8 @@ function App() {
     <div className="App">
       <Nav/>
       <Routes>
-        <Route path="/" element={<TaskList />} />
+          <Route path="/" element={<App />} />
+          <Route index element={<TaskList />}/>
           <Route path="/add" element={<AddTask />} />
           <Route path="*" element={<Page404/>}/>
         </Routes>

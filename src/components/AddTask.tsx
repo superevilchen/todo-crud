@@ -5,6 +5,8 @@ import * as yup from 'yup'
 import axios from 'axios';
 import { TaskModel } from './TaskModel';
 import notify, { ErrMsg, SccMsg } from '../utils/Notification';
+import Task, { TaskProps } from './Task';
+import { addToTaskList } from '../utils/Networking/TasksApi';
 
 export const schema = yup.object().shape({
     title: yup.string().required(),
@@ -15,20 +17,13 @@ export const schema = yup.object().shape({
 
 function AddTask() {
 
-    const { register, handleSubmit, formState: { errors, isDirty, isSubmitting, isValid } } = useForm({
+    const { register, handleSubmit, formState: { errors, isDirty, isValid } } = useForm({
         resolver: yupResolver(schema),
         mode: 'all',
     });
 
-    const addToTaskList = (task: any) => {
-      //  e.preventDefault();
-        axios.post('http://localhost:8080/api/v1/todolist/', {
-            id: 0,
-            title: task.title,
-            description: task.description,
-            whenToDo: task.whenToDo,
-            groupType: task.groupType,
-        })
+    const add = (task: TaskModel | any) => {
+        addToTaskList(task)
         .then(response => {
             notify.success(SccMsg.ADDED_TASK);
         })
@@ -36,7 +31,7 @@ function AddTask() {
     }
 
   return (
-      <form onSubmit={handleSubmit(addToTaskList)}>
+      <form onSubmit={handleSubmit(add)}>
           <input type="text" placeholder="title" {...register('title')}/>
           <p>{ errors.title?.message }</p>
           <input type="text" placeholder="description" {...register('description')}/>
