@@ -24,26 +24,37 @@ function TaskList() {
     }, [])
 
   return (
-      <div>
-          <table>
-              <thead>
-                  <tr>
-                  <th>title</th>
-                  <th>description</th>
-                  <th>when</th>
-                  <th>group</th>
-                      </tr>
-              </thead>
-              <tbody>
-                  {tasks.length == 0 ? <EmptyTaskList/> : tasks.map((task) => (
-                      <Task task={task} key={ task.id }/>
-                  ))}
-                  {/* {tasks.map((task) => (
-                      <Task task={task} key={ task.id }/>
-                  ))} */}
-              </tbody>
-          </table>
-    </div>
+
+      <>   
+
+          {tasks.length === 0 ? 
+              <EmptyTaskList /> :
+          
+              <div>
+              <table>
+                  <thead>
+                      <tr>
+                      <th>title</th>
+                      <th>description</th>
+                      <th>when</th>
+                      <th>group</th>
+                          </tr>
+                  </thead>
+                  <tbody>
+                      {tasks.map((task) => (
+                          <Task task={task} key={ task.id }/>
+                      ))}
+                      {/* {tasks.map((task) => (
+                          <Task task={task} key={ task.id }/>
+                      ))} */}
+                  </tbody>
+              </table>
+              </div>
+
+          }
+
+          </>
+
   )
 }
 

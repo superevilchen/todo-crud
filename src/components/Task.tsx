@@ -3,38 +3,34 @@ import React from 'react'
 import { Link, Routes } from 'react-router-dom';
 import { formatDate } from '../utils/DateFormatter';
 import { deleteTask } from '../utils/Networking/TasksApi';
-import notify, { SccMsg } from '../utils/Notification';
+import notify, { ErrMsg, SccMsg } from '../utils/Notification';
 import { TaskModel } from './TaskModel'
 import UpdateTask from './UpdateTask';
 
-export interface TaskProps{
-    task: TaskModel;
-}
+// export interface TaskProps{
+//     task: TaskModel;
+// }
 
-// const onDelete = async (id: number) => {
-//   await axios.delete(`http://localhost:8080/api/v1/todolist/${id}`)
+
 const onDelete = (id: number) => {
   deleteTask(id)
-    .then(response => {
+    .then(() => {
     notify.success(SccMsg.DELETED_TASK)
     })
-    .catch(error => {
-      notify.error(error);
+    .catch(() => {
+      notify.error(ErrMsg.NETWORK_ERROR);
   })
 }
 
-function Task({task}: TaskProps) {
+function Task({task}: {task: TaskModel}) {
   return (
       <tr>
           <td>{ task.title }</td>
           <td>{ task.description }</td>
-          <td>{ formatDate(task.whenToDo) }</td>
-      <td>{task.groupType}</td>
-      <td><button onClick={() => onDelete(task.id)}>delete</button></td>
-      {/* <Link to= {`/shop/${task.id}`}><Item data={task} key={task.id} /></Link>  */}
-      <td>
-        <button onClick={() => <UpdateTask task={task}/>}>update</button>
-      </td>
+          <td>{ formatDate(task.when) }</td>
+      <td>{task.group}</td>
+      <td><Link to={`/update/${task.id}`}>edit</Link></td>
+      <td><Link to={`/delete/${task.id}`}>delete</Link></td>
     </tr>
   )
 }

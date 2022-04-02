@@ -5,17 +5,20 @@ import * as yup from 'yup'
 import axios from 'axios';
 import { TaskModel } from './TaskModel';
 import notify, { ErrMsg, SccMsg } from '../utils/Notification';
-import Task, { TaskProps } from './Task';
-import { addToTaskList } from '../utils/Networking/TasksApi';
+import Task from './Task';
+import { addTask } from '../utils/Networking/TasksApi';
+import { useNavigate } from 'react-router-dom';
 
 export const schema = yup.object().shape({
     title: yup.string().required(),
     description: yup.string().required(),
-    whenToDo: yup.date().required(),
-    groupType: yup.string().required(),
+    when: yup.date().required(),
+    group: yup.string().required(),
 })
 
 function AddTask() {
+
+    const navigate = useNavigate();
 
     const { register, handleSubmit, formState: { errors, isDirty, isValid } } = useForm({
         resolver: yupResolver(schema),
@@ -23,11 +26,12 @@ function AddTask() {
     });
 
     const add = (task: TaskModel | any) => {
-        addToTaskList(task)
-        .then(response => {
+        addTask(task)
+        .then(() => {
             notify.success(SccMsg.ADDED_TASK);
+            navigate('/');
         })
-        .catch(error => notify.error(ErrMsg.FAILED_ADDING))
+        .catch(() => notify.error(ErrMsg.FAILED_ADDING))
     }
 
   return (
@@ -36,9 +40,9 @@ function AddTask() {
           <p>{ errors.title?.message }</p>
           <input type="text" placeholder="description" {...register('description')}/>
           <p>{ errors.description?.message }</p>
-          <input type="date" placeholder="when" {...register('whenToDo')}/>
-          <p>{ errors.whenToDo?.message }</p>
-          <select {...register('groupType')}>
+          <input type="date" placeholder="when" {...register('when')}/>
+          <p>{ errors.when?.message }</p>
+          <select {...register('group')}>
               <option>REACT</option>
               <option>HTML</option>
               <option>CSS</option>

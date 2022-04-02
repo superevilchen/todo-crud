@@ -1,31 +1,19 @@
 import axios from "axios"
-import { TaskProps } from "../../components/Task"
 import { TaskModel } from "../../components/TaskModel"
+import globals from "../Globals/Globals"
 
-export const addToTaskList = (task: TaskModel) => {
-    return axios.post('http://localhost:8080/api/v1/todolist/', {
-        id: 0,
-        title: task.title,
-        description: task.description,
-        whenToDo: task.whenToDo,
-        groupType: task.groupType,
-    })
+export const addTask = async (task: TaskModel) => {
+    return await axios.post<TaskModel>(`${globals.urls.tasks}`, task)
 }
 
 export const getTasks = async () => {
-    return await axios.get('http://localhost:8080/api/v1/todolist/')
+    return await axios.get<TaskModel[]>(`${globals.urls.tasks}`)
 }
     
-export const updateTask = async (task: TaskModel) => {
-    await axios.put(`http://localhost:8080/api/v1/todolist/${task.id}`, {
-        id: task.id,
-        title: task.title,
-        description: task.description,
-        whenToDo: task.whenToDo,
-        groupType: task.groupType
-    })
+export const updateTask = async (id: number, task: TaskModel) => {
+    return await axios.put<any>(`${globals.urls.tasks}${task.id}`, task)
 }
 
 export const deleteTask = async (id: number) => {
-    await axios.delete(`http://localhost:8080/api/v1/todolist/${id}`)
+    return await axios.delete<any>(`${globals.urls.tasks}${id}`)
 }
