@@ -8,6 +8,8 @@ import notify, { ErrMsg, SccMsg } from '../utils/Notification';
 import Task from './Task';
 import { addTask } from '../utils/Networking/TasksApi';
 import { useNavigate } from 'react-router-dom';
+import store from '../redux/Store';
+import { tasksAddedAction } from '../redux/TaskAppState';
 
 export const schema = yup.object().shape({
     title: yup.string().required(),
@@ -27,8 +29,9 @@ function AddTask() {
 
     const add = (task: TaskModel | any) => {
         addTask(task)
-        .then(() => {
+        .then((response) => {
             notify.success(SccMsg.ADDED_TASK);
+            store.dispatch(tasksAddedAction(response.data))
             navigate('/');
         })
         .catch(() => notify.error(ErrMsg.FAILED_ADDING))
@@ -59,3 +62,7 @@ function AddTask() {
 }
 
 export default AddTask
+
+function taskAdded(data: TaskModel): any {
+    throw new Error('Function not implemented.');
+}

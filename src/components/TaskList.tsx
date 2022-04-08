@@ -1,6 +1,8 @@
 import axios from 'axios';
 import React, { useState } from 'react'
 import { useEffect } from 'react';
+import store from '../redux/Store';
+import { tasksDownloadedAction } from '../redux/TaskAppState';
 import { getTasks } from '../utils/Networking/TasksApi';
 import notify, { ErrMsg, SccMsg } from '../utils/Notification';
 import EmptyTaskList from './EmptyTaskList';
@@ -10,17 +12,22 @@ import { TaskModel } from './TaskModel';
 
 function TaskList() {
 
-    const [tasks, tasksSet] = useState<TaskModel[]>([]);
+    const [tasks, tasksSet] = useState<TaskModel[]>(store.getState().taskState.tasks);
 
     useEffect(() => {
-        getTasks()
+        
+        if (tasks.length === 0) {
+            getTasks()
             .then(response => {
                 tasksSet(response.data)
+                store.dispatch(tasksDownloadedAction(response.data))
                 notify.success(SccMsg.GOT_TASKS);
             })
-            .catch(error => {
+            .catch(() => {
             notify.error(ErrMsg.NETWORK_ERROR);
-        });
+        })
+        }
+
     }, [])
 
   return (

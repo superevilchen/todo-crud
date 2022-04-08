@@ -1,5 +1,5 @@
-import React from 'react'
-import { useForm } from 'react-hook-form';
+import React, { useEffect, useState } from 'react'
+import { useForm, useFormState } from 'react-hook-form';
 import { TaskModel } from './TaskModel';
 import { yupResolver } from '@hookform/resolvers/yup'
 import notify, { ErrMsg, SccMsg } from '../utils/Notification';
@@ -7,6 +7,8 @@ import * as yup from 'yup'
 import { schema } from './AddTask';
 import { updateTask } from '../utils/Networking/TasksApi';
 import { useNavigate, useParams } from 'react-router-dom';
+import store from '../redux/Store';
+import { tasksUpdatedAction } from '../redux/TaskAppState';
 
 function UpdateTask() {
 
@@ -14,15 +16,30 @@ function UpdateTask() {
     const params = useParams();
     const id = +(params.id || '');
 
-    const { register, handleSubmit, formState: { errors, isDirty, isValid } } = useForm({
+    const [task, setTask] = useState<TaskModel>();
+
+    useEffect(() => {
+        setTask(store.getState().taskState.tasks.filter(t => t.id === id)[0])
+    }, [])
+
+    // define default so that if it's not changed, there wont be a call to database
+    let defaultValuesObj = { ...task };
+
+    const { register, handleSubmit, control, formState: { errors, isDirty, isValid } } = useForm({
+        defaultValues: defaultValuesObj, 
         resolver: yupResolver(schema),
         mode: 'all'
     });
 
+    // const { dirtyFields } = useFormState({
+    //     control
+    // });
+
     const update = (task: any) => {
         updateTask(id, task)
-            .then(() => {
+            .then((response) => {
                 notify.success(SccMsg.UPDATED_TASK)
+                store.dispatch(tasksUpdatedAction(response.data))
                 navigate('/')
             })
         .catch(() => notify.error(ErrMsg.NETWORK_ERROR));
@@ -30,11 +47,11 @@ function UpdateTask() {
 
   return (
     <form onSubmit={handleSubmit(update)}>
-    <input type="text" placeholder="title" {...register('title')}/>
+    <input type="text" placeholder={`${task?.title}`} {...register('title')}/>
     <p>{ errors.title?.message }</p>
-    <input type="text" placeholder="description" {...register('description')}/>
+    <input type="text" placeholder={`${task?.description}`} {...register('description')}/>
     <p>{ errors.description?.message }</p>
-    <input type="date" placeholder="when" {...register('when')}/>
+    <input type="date" placeholder={`${task?.when}`} {...register('when')}/>
     <p>{ errors.when?.message }</p>
     <select {...register('group')}>
         <option>REACT</option>
@@ -47,7 +64,7 @@ function UpdateTask() {
         <option>JAVA</option>
         <option>SPRING</option>
     </select>
-    <button disabled={!isDirty || !isValid} type="submit">yalla</button>
+    <button disabled={!isDirty || !isValid} >yalla</button>
 </form>
   )
 }
