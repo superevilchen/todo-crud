@@ -11,7 +11,7 @@ export const getTasks = async () => {
 }
     
 export const updateTask = async (id: number, task: TaskModel) => {
-    return await axios.put<any>(`${globals.urls.tasks}${task.id}`, task)
+    return await axios.put<any>(`${globals.urls.tasks}${id}`, task)
 }
 
 export const deleteTask = async (id: number) => {

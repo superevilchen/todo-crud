@@ -3,6 +3,7 @@ import { useForm } from 'react-hook-form';
 import { TaskModel } from './TaskModel';
 import { yupResolver } from '@hookform/resolvers/yup'
 import notify, { ErrMsg, SccMsg } from '../utils/Notification';
+import * as yup from 'yup'
 import { schema } from './AddTask';
 import { updateTask } from '../utils/Networking/TasksApi';
 import { useNavigate, useParams } from 'react-router-dom';
@@ -18,7 +19,7 @@ function UpdateTask() {
         mode: 'all'
     });
 
-    const update = (task: TaskModel | any) => {
+    const update = (task: any) => {
         updateTask(id, task)
             .then(() => {
                 notify.success(SccMsg.UPDATED_TASK)
