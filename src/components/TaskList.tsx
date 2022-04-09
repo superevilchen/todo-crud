@@ -1,6 +1,7 @@
 import axios from 'axios';
 import React, { useState } from 'react'
 import { useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
 import store from '../redux/Store';
 import { tasksDownloadedAction } from '../redux/TaskAppState';
 import { getTasks } from '../utils/Networking/TasksApi';
@@ -11,6 +12,16 @@ import { TaskModel } from './TaskModel';
 
 
 function TaskList() {
+
+    const navigate = useNavigate();
+
+    useEffect(() => {
+        // If we don't have a user object - we are not logged in
+        if (!store.getState().authState.user.token) {
+            notify.error(ErrMsg.LOGIN_NEEDED);
+            navigate('/login');
+        }
+    },[])
 
     const [tasks, tasksSet] = useState<TaskModel[]>(store.getState().taskState.tasks);
 

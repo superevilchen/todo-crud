@@ -10,7 +10,8 @@ export enum TasksActionType {
     TasksDownloaded = "TasksDownloaded",
     TaskAdded = "TaskAdded",
     TaskUpdated = "TaskUpdated",
-    TaskDeleted = "TaskDeleted"
+    TaskDeleted = "TaskDeleted",
+    TasksCleared = "TasksCleared"
 }
 
 // Step 3 - Define Action Interface to describe actionAction & payload if needed
@@ -36,6 +37,12 @@ export function tasksDeletedAction(id:number): TaskAction {
     return { type: TasksActionType.TaskDeleted, payload: id };
 }
 
+export function tasksClearedAction(): TaskAction {
+    return { type: TasksActionType.TasksCleared, payload: {} };
+
+ }
+
+
 // Step 5 - Reducer function perform the required action
 export function tasksReducer(currentState: TaskAppState = new TaskAppState(),action:TaskAction): TaskAppState{
     // const newState = new CatsAppState();
@@ -55,7 +62,9 @@ export function tasksReducer(currentState: TaskAppState = new TaskAppState(),act
             break
             case TasksActionType.TaskDeleted:
                 newState.tasks = newState.tasks.filter(t=>t.id !== action.payload);
-                break
+            break
+        case TasksActionType.TasksCleared:
+            newState.tasks = []
     }
     return newState;
     

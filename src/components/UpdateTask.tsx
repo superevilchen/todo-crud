@@ -12,6 +12,14 @@ import { tasksUpdatedAction } from '../redux/TaskAppState';
 
 function UpdateTask() {
 
+    useEffect(() => {
+        // If we don't have a user object - we are not logged in
+        if (!store.getState().authState.user.token) {
+            notify.error(ErrMsg.LOGIN_NEEDED);
+            navigate('/login');
+        }
+    },[])
+
     const navigate = useNavigate();
     const params = useParams();
     const id = +(params.id || '');

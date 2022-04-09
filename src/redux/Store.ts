@@ -1,4 +1,5 @@
 import { combineReducers, createStore } from "redux";
+import { authReducer } from "./AuthAppState";
 import { tasksReducer } from "./TaskAppState";
 
 // Single Reducer
@@ -8,7 +9,7 @@ import { tasksReducer } from "./TaskAppState";
 //const xys = store.getState().cats;
 
 //Multiple catsReducer
-const reducers = combineReducers({taskState: tasksReducer});
+const reducers = combineReducers({taskState: tasksReducer,authState: authReducer});
 const store = createStore(reducers)
 
 // For getting data

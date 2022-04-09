@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import { useNavigate, useParams } from 'react-router-dom';
 import store from '../redux/Store';
 import { tasksDeletedAction } from '../redux/TaskAppState';
@@ -6,6 +6,14 @@ import { deleteTask } from '../utils/Networking/TasksApi';
 import notify, { ErrMsg, SccMsg } from '../utils/Notification';
 
 function DeleteTask() {
+
+    useEffect(() => {
+        // If we don't have a user object - we are not logged in
+        if (!store.getState().authState.user.token) {
+            notify.error(ErrMsg.LOGIN_NEEDED);
+            navigate('/login');
+        }
+    },[])
 
     const navigate = useNavigate();
     const params = useParams();

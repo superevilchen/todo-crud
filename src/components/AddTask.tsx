@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup'
 import * as yup from 'yup'
@@ -20,6 +20,14 @@ export const schema = yup.object().shape({
 
 function AddTask() {
 
+    useEffect(() => {
+        // If we don't have a user object - we are not logged in
+        if (!store.getState().authState.user.token) {
+            notify.error(ErrMsg.LOGIN_NEEDED);
+            navigate('/login');
+        }
+    },[])
+
     const navigate = useNavigate();
 
     const { register, handleSubmit, formState: { errors, isDirty, isValid } } = useForm({
@@ -29,7 +37,8 @@ function AddTask() {
 
     const add = (task: TaskModel | any) => {
         addTask(task)
-        .then((response) => {
+            .then((response) => {
+            console.log(response.data.id)
             notify.success(SccMsg.ADDED_TASK);
             store.dispatch(tasksAddedAction(response.data))
             navigate('/');
