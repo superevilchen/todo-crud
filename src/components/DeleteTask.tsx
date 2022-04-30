@@ -4,46 +4,38 @@ import store from '../redux/Store';
 import { tasksDeletedAction } from '../redux/TaskAppState';
 import { deleteTask } from '../utils/Networking/TasksApi';
 import notify, { ErrMsg, SccMsg } from '../utils/Notification';
+import YesNoDialog from './YesNoDialog';
 
-function DeleteTask() {
 
-    useEffect(() => {
-        // If we don't have a user object - we are not logged in
-        if (!store.getState().authState.user.token) {
-            notify.error(ErrMsg.LOGIN_NEEDED);
-            navigate('/login');
-        }
-    },[])
 
-    const navigate = useNavigate();
-    const params = useParams();
-    const id = +(params.id || '');
-    
+function DeleteTask({id}: {id: number}) {
+
     const onDelete = () => {
         deleteTask(id)
             .then(() => {
                 notify.success(SccMsg.DELETED_TASK)
                 store.dispatch(tasksDeletedAction(id))
-                navigate('/')
             })
         .catch(() => notify.error(ErrMsg.NETWORK_ERROR))
-    }
-
-    const noDelete = () => {
-        navigate('/')
-    }
+      }
 
   return (
       <div>
-          <h2>delete task {id}?</h2>
-          <button onClick={onDelete}>yes</button>
-          <button onClick={noDelete}>no</button>
+          <button type="button" className="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
+  delete
+</button>
+
+<div className="modal fade" id="exampleModal" tabIndex={-1} aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div className="modal-dialog">
+    <div className="modal-content">
+      <div className="modal-body">
+        <YesNoDialog onYes={onDelete} text={'Delete task?'}/>
+      </div>
+    </div>
+  </div>
+</div>
     </div>
   )
 }
 
 export default DeleteTask
-
-function taskDelete(id: number): any {
-    throw new Error('Function not implemented.');
-}

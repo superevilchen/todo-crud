@@ -11,6 +11,7 @@ import DeleteTask from './components/DeleteTask';
 import Login from './components/AuthArea/Login';
 import Logout from './components/AuthArea/Logout';
 import Register from './components/AuthArea/Register';
+import YesNoDialog from './components/YesNoDialog';
 
 function App() {
   return (
@@ -22,7 +23,7 @@ function App() {
           <Route index element={<TaskList />}/>
           <Route path="/add" element={<AddTask />} />
           <Route path="/update/:id" element={<UpdateTask />}/>
-          <Route path="/delete/:id" element={<DeleteTask />} />
+          {/* <Route path="/delete/:id" element={<DeleteTask />} /> */}
           <Route path="/login" element={<Login />} />
           <Route path="/logout" element={<Logout />} />
           <Route path="/register" element={<Register />} />

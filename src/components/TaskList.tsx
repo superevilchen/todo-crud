@@ -39,6 +39,10 @@ function TaskList() {
         })
         }
 
+        return store.subscribe(() => {
+            tasksSet(store.getState().taskState.tasks)
+        })
+
     }, [])
 
   return (
