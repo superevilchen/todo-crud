@@ -2,6 +2,9 @@ import React, { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom';
 import { UserModel } from '../../models/UserModel';
 import store from '../../redux/Store'
+import Login from '../../assets/login.png';
+import Register from '../../assets/register.png';
+
 
 function AuthMenu() {
 
@@ -18,17 +21,28 @@ function AuthMenu() {
       <div>
           {user?.token ?
         
-              <>
-                  <span>{user.email}</span>
-                  <Link to='/logout'>logout</Link>
-              </>
+                  
+              <div className="IconContainer">
+                  <Link to='/logout' className="Link">
+                      <img src={Login} alt="" className="Icon" />
+                  <div>Logout</div></Link>
+                  </div>
 
               :
 
               <>
-                  <span>hello guest</span>
-                  <Link to="/login">login</Link>
-                  <Link to="/register">register</Link>
+                                    <div className="IconContainer">
+                      <Link to="/login" className="Link">
+                      <img src={Login} alt="" className="Icon" />
+                      <div>Login</div></Link>
+                  </div>
+
+                  <div className="IconContainer">
+                  <Link to="/register" className="Link">
+                      <img src={Register} alt="" className="Icon" />
+                      <div>Register</div></Link>
+                  </div>
+                  
               </>
         
         }

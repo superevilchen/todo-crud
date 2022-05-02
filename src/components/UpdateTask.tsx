@@ -10,7 +10,7 @@ import { useNavigate, useParams } from 'react-router-dom';
 import store from '../redux/Store';
 import { tasksUpdatedAction } from '../redux/TaskAppState';
 
-function UpdateTask() {
+function UpdateTask({task}: {task: TaskModel}) {
 
     useEffect(() => {
         // If we don't have a user object - we are not logged in
@@ -21,14 +21,14 @@ function UpdateTask() {
     },[])
 
     const navigate = useNavigate();
-    const params = useParams();
-    const id = +(params.id || '');
+    // const params = useParams();
+    // const id = +(params.id || '');
 
-    const [task, setTask] = useState<TaskModel>();
+    // const [task, setTask] = useState<TaskModel>();
 
-    useEffect(() => {
-        setTask(store.getState().taskState.tasks.filter(t => t.id === id)[0])
-    }, [])
+    // useEffect(() => {
+    //     setTask(store.getState().taskState.tasks.filter(t => t.id === id)[0])
+    // }, [])
 
     // define default so that if it's not changed, there wont be a call to database
     let defaultValuesObj = { ...task };
@@ -43,8 +43,8 @@ function UpdateTask() {
     //     control
     // });
 
-    const update = (task: any) => {
-        updateTask(id, task)
+    const update = (taskToUpdate: any) => {
+        updateTask(task.id, taskToUpdate)
             .then((response) => {
                 notify.success(SccMsg.UPDATED_TASK)
                 store.dispatch(tasksUpdatedAction(response.data))

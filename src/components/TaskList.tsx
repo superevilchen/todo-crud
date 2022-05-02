@@ -9,6 +9,9 @@ import notify, { ErrMsg, SccMsg } from '../utils/Notification';
 import EmptyTaskList from './EmptyTaskList';
 import Task from './Task';
 import { TaskModel } from './TaskModel';
+import TaskTabs from './TaskTabs';
+
+
 
 
 function TaskList() {
@@ -47,35 +50,23 @@ function TaskList() {
 
   return (
 
-      <>   
+    <div>
 
           {tasks.length === 0 ? 
               <EmptyTaskList /> :
+
           
-              <div>
-              <table>
-                  <thead>
-                      <tr>
-                      <th>title</th>
-                      <th>description</th>
-                      <th>when</th>
-                      <th>group</th>
-                          </tr>
-                  </thead>
-                  <tbody>
+              <div className="TaskListBack">
+
                       {tasks.map((task) => (
-                          <Task task={task} key={ task.id }/>
+                          <TaskTabs task={task} key={ task.id }/>
                       ))}
-                      {/* {tasks.map((task) => (
-                          <Task task={task} key={ task.id }/>
-                      ))} */}
-                  </tbody>
-              </table>
+
               </div>
 
           }
 
-          </>
+          </div>
 
   )
 }

@@ -1,13 +1,87 @@
 body {
-  margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+  background-image: url("https://wallpaperaccess.com/full/90278.jpg");
+  position:absolute;
+  background-attachment: fixed;
+  height: 95.7%;
+  width: 100%;
 }
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
+html, body, #root {
+  height: 100%;
+  width: 100%;
+  margin: 0;
+}
+
+input{
+  width: 250px;
+}
+
+select{
+  width: 100px;
+}
+
+.MarginTop{
+  margin-top: -19px;
+}
+
+.Center{
+       display: flex;
+       align-items: center;
+       justify-content: center;
+}
+
+.Container{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
+}
+
+.HeaderPadding{
+  padding-top: 0.9rem;
+  padding-bottom: 0.9rem;
+}
+
+.BoxTask{
+  padding: 1rem;
+  margin-top: 1rem;
+}
+
+.Background{
+  background-image: url("https://wallpaperaccess.com/full/90278.jpg");
+  position:absolute;
+  background-attachment: fixed;
+  height: 95.7%;
+  width: 100%;
+}
+
+.TaskListBack{
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: row;
+  width: 100%;
+  height: 100%;
+}
+
+.IconContainer{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  bottom:0px;
+  padding: 0.5rem;
+  
+}
+
+.Icon{
+  width: 55px; 
+  height: 55px;
+}
+
+.Link, .Link:hover, .Link:focus{
+  text-decoration: none;
+  color: black;
 }
