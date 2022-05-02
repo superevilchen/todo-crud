@@ -43,16 +43,42 @@ function Register() {
     
 
   return (
-      <div>
-          <form onSubmit={handleSubmit(registerUser)}>
-              <input type="text" placeholder="email" {...register('email')}/>
-              <p>{ errors.email?.message }</p>
-              <input type="text" placeholder="password" {...register('password')}/>
-              <p>{ errors.password?.message }</p>
-              <input type="text" placeholder="confirm password" {...register('confirm')}/>
-              <p>{errors.confirm?.message}</p>
+      <div className="Center">
+
+<div className="window" style={{width: "300px"}}>
+  <div className="title-bar">
+    <div className="title-bar-text">Register</div>
+    <div className="title-bar-controls">
+      <button aria-label="Minimize"></button>
+      <button aria-label="Maximize"></button>
+      <button aria-label="Close"></button>
+    </div>
+  </div>
+  <div className="window-body">
+                  <form onSubmit={handleSubmit(registerUser)}>
+                      
+                  <div className="field-row-stacked">
+  <label htmlFor="text21">Email</label>
+  <input id="text21" type="email" placeholder="email" {...register('email')}/>
+  <label htmlFor="text24">{ errors.email?.message }</label>
+                      </div>
+                      
+                      <div className="field-row-stacked">
+  <label htmlFor="text21">Password</label>
+  <input id="text21" type="password" placeholder="password" {...register('password')}/>
+  <label htmlFor="text24">{ errors.password?.message }</label>
+                      </div>
+                      
+                      <div className="field-row-stacked">
+  <label htmlFor="text21">Confirm Password</label>
+  <input id="text21" type="password" placeholder="confirm password" {...register('confirm')}/>
+  <label htmlFor="text24">{ errors.confirm?.message }</label>
+</div><br/>
+
               <button type="submit" disabled={!isDirty || !isValid}>register</button>
-          </form>
+          </form>  </div>
+</div>
+
     </div>
   )
 }

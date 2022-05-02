@@ -37,14 +37,37 @@ function Login() {
   }
 
   return (
-      <div>
+    <div className="Center">
+      
+      <div className="window" style={{width: "300px"}}>
+      <div className="title-bar" style={{paddingTop: "0.9rem", paddingBottom: "0.9rem"}}>
+    <div className="title-bar-text">Login</div>
+    <div className="title-bar-controls">
+      <button aria-label="Minimize"></button>
+      <button aria-label="Maximize"></button>
+      <button aria-label="Close"></button>
+    </div>
+  </div>
+  <div className="window-body">
           <form onSubmit={handleSubmit(loginUser)}>
-        <input type="text" placeholder="email" {...register('email')} />
-        <p>{ errors.email?.message }</p>
-        <input type="text" placeholder="password" {...register('password')} />
-        <p>{ errors.password?.message }</p>
+            
+          <div className="field-row-stacked">
+  <label htmlFor="text21">Email</label>
+  <input id="text21" type="email" placeholder="email" {...register('email')}/>
+  <label htmlFor="text24">{ errors.email?.message }</label>
+            </div>
+
+            <div className="field-row-stacked">
+  <label htmlFor="text21">Password</label>
+  <input id="text21" type="password" placeholder="password" {...register('password')}/>
+  <label htmlFor="text24">{ errors.password?.message }</label>
+            </div><br/>
               <button type="submit">login</button>
           </form>
+  </div>
+</div>
+      
+          
     </div>
   )
 }

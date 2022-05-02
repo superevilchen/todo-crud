@@ -49,7 +49,7 @@ function AddTask() {
 
     return (
       
-        <div>
+        <div className="Center">
 
 <div className="window" style={{width: "300px"}}>
   <div className="title-bar" style={{paddingTop: "0.9rem", paddingBottom: "0.9rem"}}>
