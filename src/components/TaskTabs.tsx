@@ -1,5 +1,6 @@
 import React from 'react'
 import { Tabs, TabList, Tab, TabPanel } from 'react-tabs'
+import DeleteTask from './DeleteTask'
 import Task from './Task'
 import { TaskModel } from './TaskModel'
 import UpdateTask from './UpdateTask'
@@ -32,7 +33,7 @@ function TaskTabs({ task }: { task: TaskModel }) {
       <UpdateTask task={task}/>
     </TabPanel>
     <TabPanel>
-      <h2>Any content 3</h2>
+      <DeleteTask id={ task.id }/>
     </TabPanel>
         </Tabs>
         </div>

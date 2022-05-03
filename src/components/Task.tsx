@@ -21,36 +21,29 @@ function Task({task}: {task: TaskModel}) {
 
   return (
 
-    <div >
       <div className="Container">
           <span>{ task.title }</span>
           <span>{ task.description }</span>
           <span>{ task.when }</span>
       <span>{task.group}</span>
-      {/* <span><Link to={`/update/${task.id}`}>edit</Link></span> */}
 
-      {/* <span><Link to={`/delete/${task.id}`}>delete</Link></span> */}
-
-      {/* <DeleteTask id={task.id}/> */}
-
-      </div>
       </div>
   )
 }
 
  export default Task
 
-// <div className="window" style={{width: "400px"}}>
-//   <div className="title-bar">
-//     <div className="title-bar-text">A Window With Tabs and Groups</div>
-//     <div className="title-bar-controls">
+// <div classNameName="window" style={{width: "400px"}}>
+//   <div classNameName="title-bar">
+//     <div classNameName="title-bar-text">A Window With Tabs and Groups</div>
+//     <div classNameName="title-bar-controls">
 //       <button aria-label="Minimize"></button>
 //       <button aria-label="Maximize"></button>
 //       <button aria-label="Close"></button>
 //     </div>
 //   </div>
-//   <div className="window-body">
-//   <section className="tabs" style={{maxWidth: "500px"}}>
+//   <div classNameName="window-body">
+//   <section classNameName="tabs" style={{maxWidth: "500px"}}>
 //   <menu role="tablist" aria-label="Sample Tabs">
 //     <button role="tab" aria-selected="true" aria-controls="tab-A">Tab A</button>
 //     <button role="tab" aria-controls="tab-B">Tab B</button>
@@ -59,7 +52,7 @@ function Task({task}: {task: TaskModel}) {
 //   <article role="tabpanel" id="tab-A">
 //     <h3>Tab Content</h3>
 //     <p>
-//       You create the tabs, you would use a <code>menu role="tablist"</code> element then htmlFor the tab titles you use a <code>button</code> with the <code>aria-controls</code> parameter set to match the relative <code>role="tabpanel"</code>'s element.
+//       You create the tabs, you would use a <code>menu role="tablist"</code> element then htmlhtmlFor the tab titles you use a <code>button</code> with the <code>aria-controls</code> parameter set to match the relative <code>role="tabpanel"</code>'s element.
 //     </p>
 //     <p>
 //       Read more at <a href="https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/Roles/Tab_Role" target="_blank">MDN Web docs - ARIA: tab role</a>
@@ -70,21 +63,21 @@ function Task({task}: {task: TaskModel}) {
 //     <p>This tab contains a GroupBox</p>
 //     <fieldset>
 //       <legend>Today's mood</legend>
-//       <div className="field-row">
+//       <div classNameName="field-row">
 //         <input id="radio10" type="radio" name="fieldset-example2"/>
-//         <label htmlFor="radio10">Claire Saffitz</label>
+//         <label htmlhtmlFor="radio10">Claire Saffitz</label>
 //       </div>
-//       <div className="field-row">
+//       <div classNameName="field-row">
 //         <input id="radio11" type="radio" name="fieldset-example2"/>
-//         <label htmlFor="radio11">Brad Leone</label>
+//         <label htmlhtmlFor="radio11">Brad Leone</label>
 //       </div>
-//       <div className="field-row">
+//       <div classNameName="field-row">
 //         <input id="radio12" type="radio" name="fieldset-example2"/>
-//         <label htmlFor="radio12">Chris Morocco</label>
+//         <label htmlhtmlFor="radio12">Chris Morocco</label>
 //       </div>
-//       <div className="field-row">
+//       <div classNameName="field-row">
 //         <input id="radio13" type="radio" name="fieldset-example2"/>
-//         <label htmlFor="radio13">Carla Lalli Music</label>
+//         <label htmlhtmlFor="radio13">Carla Lalli Music</label>
 //       </div>
 //     </fieldset>
 //   </article>
