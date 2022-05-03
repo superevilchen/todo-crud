@@ -16,8 +16,19 @@ input{
   width: 250px;
 }
 
+.InputShort{
+  width: 100px;
+}
+
 select{
   width: 100px;
+}
+
+td{
+  display: table-cell;
+  vertical-align: inherit;
+  text-align: right;
+  padding: 3px; 
 }
 
 .MarginTop{

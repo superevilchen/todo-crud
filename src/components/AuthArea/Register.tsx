@@ -46,7 +46,7 @@ function Register() {
       <div className="Center">
 
 <div className="window" style={{width: "300px"}}>
-  <div className="title-bar">
+  <div className="title-bar" style={{paddingTop: "0.9rem", paddingBottom: "0.9rem"}}>
     <div className="title-bar-text">Register</div>
     <div className="title-bar-controls">
       <button aria-label="Minimize"></button>
