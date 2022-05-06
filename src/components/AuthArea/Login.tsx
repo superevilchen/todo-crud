@@ -62,7 +62,7 @@ function Login() {
   <input id="text21" type="password" placeholder="password" {...register('password')}/>
   <label htmlFor="text24">{ errors.password?.message }</label>
             </div><br/>
-              <button type="submit">login</button>
+              <button type="submit" disabled={!isDirty || !isValid}>Login</button>
           </form>
   </div>
 </div>

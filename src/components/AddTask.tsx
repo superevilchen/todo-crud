@@ -10,6 +10,7 @@ import { useNavigate } from "react-router-dom";
 import store from "../redux/Store";
 import { tasksAddedAction } from "../redux/TaskAppState";
 import "xp.css/dist/XP.css";
+import { useAuthorizedUser } from "../utils/CustomHooks/useAuthorizedUser";
 
 export const schema = yup.object().shape({
   title: yup.string().required("Please insert a title"),
@@ -19,13 +20,8 @@ export const schema = yup.object().shape({
 });
 
 function AddTask() {
-  useEffect(() => {
-    // If we don't have a user object - we are not logged in
-    if (!store.getState().authState.user.token) {
-      notify.error(ErrMsg.LOGIN_NEEDED);
-      navigate("/login");
-    }
-  }, []);
+ 
+  useAuthorizedUser();
 
   const navigate = useNavigate();
 

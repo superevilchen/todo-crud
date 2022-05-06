@@ -9,27 +9,12 @@ import { updateTask } from "../utils/Networking/TasksApi";
 import { useNavigate, useParams } from "react-router-dom";
 import store from "../redux/Store";
 import { tasksUpdatedAction } from "../redux/TaskAppState";
+import { useAuthorizedUser } from "../utils/CustomHooks/useAuthorizedUser";
 
 function UpdateTask({ task }: { task: TaskModel }) {
-  useEffect(() => {
-    // If we don't have a user object - we are not logged in
-    if (!store.getState().authState.user.token) {
-      notify.error(ErrMsg.LOGIN_NEEDED);
-      navigate("/login");
-    }
-  }, []);
 
-  const navigate = useNavigate();
-  // const params = useParams();
-  // const id = +(params.id || '');
+  useAuthorizedUser();
 
-  // const [task, setTask] = useState<TaskModel>();
-
-  // useEffect(() => {
-  //     setTask(store.getState().taskState.tasks.filter(t => t.id === id)[0])
-  // }, [])
-
-  // define default so that if it's not changed, there wont be a call to database
   let defaultValuesObj = { ...task };
 
   const {
@@ -43,16 +28,12 @@ function UpdateTask({ task }: { task: TaskModel }) {
     mode: "all",
   });
 
-  // const { dirtyFields } = useFormState({
-  //     control
-  // });
 
   const update = (taskToUpdate: any) => {
     updateTask(task.id, taskToUpdate)
       .then((response) => {
         notify.success(SccMsg.UPDATED_TASK);
         store.dispatch(tasksUpdatedAction(response.data));
-        navigate("/");
       })
       .catch(() => notify.error(ErrMsg.NETWORK_ERROR));
   };
@@ -121,12 +102,3 @@ function UpdateTask({ task }: { task: TaskModel }) {
 }
 
 export default UpdateTask;
-
-{
-  /* <input type="text" placeholder={`${task?.title}`} {...register('title')}/>
-<p>{ errors.title?.message }</p>
-<input type="text" placeholder={`${task?.description}`} {...register('description')}/>
-<p>{ errors.description?.message }</p>
-<input type="date" placeholder={`${task?.when}`} {...register('when')}/>
-<p>{ errors.when?.message }</p> */
-}

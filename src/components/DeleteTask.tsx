@@ -1,12 +1,15 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import store from "../redux/Store";
 import { tasksDeletedAction } from "../redux/TaskAppState";
+import { useAuthorizedUser } from "../utils/CustomHooks/useAuthorizedUser";
 import { deleteTask } from "../utils/Networking/TasksApi";
 import notify, { ErrMsg, SccMsg } from "../utils/Notification";
-import YesNoDialog from "./YesNoDialog";
 
 function DeleteTask({ id }: { id: number }) {
+
+  useAuthorizedUser();
+
   const onDelete = () => {
     deleteTask(id)
       .then(() => {

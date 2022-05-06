@@ -10,7 +10,6 @@ import DeleteTask from './components/DeleteTask';
 import Login from './components/AuthArea/Login';
 import Logout from './components/AuthArea/Logout';
 import Register from './components/AuthArea/Register';
-import YesNoDialog from './components/YesNoDialog';
 import IconMenu from './components/IconMenu';
 import Main from './components/Main';
 
