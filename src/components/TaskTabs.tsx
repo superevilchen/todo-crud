@@ -1,4 +1,5 @@
 import React from "react";
+import Draggable from "react-draggable";
 import { Tabs, TabList, Tab, TabPanel } from "react-tabs";
 import DeleteTask from "./DeleteTask";
 import Task from "./Task";
@@ -7,6 +8,7 @@ import UpdateTask from "./UpdateTask";
 
 function TaskTabs({ task }: { task: TaskModel }) {
   return (
+    <Draggable>
     <div className="BoxTask">
       <div className="window" style={{ width: "400px" }}>
         <div
@@ -39,6 +41,7 @@ function TaskTabs({ task }: { task: TaskModel }) {
         </Tabs>
       </div>
     </div>
+    </Draggable>
   );
 }
 

@@ -19,9 +19,14 @@ export const schema = yup.object().shape({
   group: yup.string().required("Please select a group"),
 });
 
-function AddTask() {
+interface AddTaskProps{
+  handleClose: () => void;
+}
+
+function AddTask(props: AddTaskProps) {
  
   useAuthorizedUser();
+
 
   const navigate = useNavigate();
 
@@ -40,6 +45,7 @@ function AddTask() {
         console.log(response.data.id);
         notify.success(SccMsg.ADDED_TASK);
         store.dispatch(tasksAddedAction(response.data));
+        props.handleClose()
         navigate("/");
       })
       .catch(() => notify.error(ErrMsg.FAILED_ADDING));
@@ -56,7 +62,7 @@ function AddTask() {
           <div className="title-bar-controls">
             <button aria-label="Minimize"></button>
             <button aria-label="Maximize"></button>
-            <button aria-label="Close"></button>
+            <button aria-label="Close" onClick={props.handleClose}></button>
           </div>
         </div>
         <div className="window-body">

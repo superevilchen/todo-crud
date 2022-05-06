@@ -17,6 +17,7 @@
     "notyf": "^3.10.0",
     "react": "^18.1.0",
     "react-dom": "^18.1.0",
+    "react-draggable": "^4.4.5",
     "react-hook-form": "^7.28.1",
     "react-router-dom": "^6.2.2",
     "react-scripts": "5.0.0",

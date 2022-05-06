@@ -15,8 +15,8 @@ function Routing() {
           <Routes>
           <Route path="/" element={<App />} />
           <Route index element={<TaskList />}/>
-        <Route path="/add" element={<AddTask />} />
-        <Route path="/about" element={<About/>}/>
+        {/* <Route path="/add" element={<AddTask />} /> */}
+        {/* <Route path="/about" element={<About/>}/> */}
           <Route path="/login" element={<Login />} />
           <Route path="/logout" element={<Logout />} />
           <Route path="/register" element={<Register />} />

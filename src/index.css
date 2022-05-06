@@ -85,8 +85,12 @@ td{
   position: relative;
   bottom:0px;
   padding: 0.5rem;
-  
 }
+
+.IconContainer > button {
+  all: unset;
+  cursor: pointer;
+} 
 
 .Icon{
   width: 55px; 
@@ -96,4 +100,22 @@ td{
 .Link, .Link:hover, .Link:focus{
   text-decoration: none;
   color: black;
+}
+
+.AddTask{
+  position: fixed;
+  width: 100%;
+  height: 100vh;
+  top: 0;
+  left: 30%;
+  z-index: 100;
+}
+
+.About{
+  position: fixed;
+  width: 100%;
+  height: 100vh;
+  top: 10%;
+  left: 0;
+  z-index: 100;
 }

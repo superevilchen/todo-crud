@@ -19,10 +19,6 @@ function Task({ task }: { task: TaskModel }) {
     <fieldset>
       <div className="Container">
         <table>
-          <thead>
-            <th></th>
-            <th></th>
-          </thead>
           <tbody>
             <tr>
               <td>
