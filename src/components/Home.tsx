@@ -1,16 +1,17 @@
 import React from "react";
 import Draggable from "react-draggable";
+import { Link } from "react-router-dom";
 
-function EmptyTaskList() {
+function Home() {
   return (
     <Draggable>
       <div className="Center">
-        <div className="window">
+        <div className="window" style={{ width: "300px" }}>
           <div
             className="title-bar"
             style={{ paddingTop: "0.9rem", paddingBottom: "0.9rem" }}
           >
-            <div className="title-bar-text">Command Prompt</div>
+            <div className="title-bar-text">Welcome!</div>
             <div className="title-bar-controls">
               <button aria-label="Minimize"></button>
               <button aria-label="Maximize"></button>
@@ -18,7 +19,12 @@ function EmptyTaskList() {
             </div>
           </div>
           <div className="window-body">
-            <pre>NOTHING TO SEE HERE</pre>
+            <p className="Center">Welcome!</p>
+            <div className="BoxTask">
+              <Link to="/login">Login</Link>
+              <span> ~ </span>
+              <Link to="/register">Register</Link>
+            </div>
           </div>
         </div>
       </div>
@@ -26,4 +32,4 @@ function EmptyTaskList() {
   );
 }
 
-export default EmptyTaskList;
+export default Home;

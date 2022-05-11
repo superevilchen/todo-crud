@@ -18,7 +18,10 @@ export enum ErrMsg{
     LOGIN_FAILED = "login failed",
     REGISTRATION_FAILED = "registration failed",
     LOGOUT_FAILED = "logout failed",
-    LOGIN_NEEDED = "Please log in"
+    LOGIN_NEEDED = "Please log in",
+    DELETE_FAILED = "delete failed",
+    UPDATE_FAILED = "update failed",
+    
 }
 class Notify {
 

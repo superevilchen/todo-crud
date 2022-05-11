@@ -9,14 +9,17 @@ import notify, { ErrMsg, SccMsg } from "../utils/Notification";
 function DeleteTask({ id }: { id: number }) {
 
   useAuthorizedUser();
+  const navigate = useNavigate();
+
 
   const onDelete = () => {
     deleteTask(id)
       .then(() => {
         notify.success(SccMsg.DELETED_TASK);
         store.dispatch(tasksDeletedAction(id));
+        navigate("/list");
       })
-      .catch(() => notify.error(ErrMsg.NETWORK_ERROR));
+      .catch(() => notify.error(ErrMsg.DELETE_FAILED));
   };
 
   return (

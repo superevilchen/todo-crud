@@ -12,10 +12,10 @@ import { tasksUpdatedAction } from "../redux/TaskAppState";
 import { useAuthorizedUser } from "../utils/CustomHooks/useAuthorizedUser";
 
 function UpdateTask({ task }: { task: TaskModel }) {
-
   useAuthorizedUser();
 
   let defaultValuesObj = { ...task };
+  const navigate = useNavigate();
 
   const {
     register,
@@ -28,20 +28,22 @@ function UpdateTask({ task }: { task: TaskModel }) {
     mode: "all",
   });
 
-
   const update = (taskToUpdate: any) => {
     updateTask(task.id, taskToUpdate)
       .then((response) => {
         notify.success(SccMsg.UPDATED_TASK);
         store.dispatch(tasksUpdatedAction(response.data));
+        navigate("/list");
       })
-      .catch(() => notify.error(ErrMsg.NETWORK_ERROR));
+      .catch(() => notify.error(ErrMsg.UPDATE_FAILED));
   };
 
   return (
     <div className="window-body">
-          <form onSubmit={handleSubmit(update)}>
-              <label htmlFor="text10" className="Container">Update an existing task</label>
+      <form onSubmit={handleSubmit(update)}>
+        <label htmlFor="text10" className="Container">
+          Update an existing task
+        </label>
         <fieldset>
           <div className="field-row-stacked">
             <label htmlFor="text21">Title</label>
@@ -93,9 +95,9 @@ function UpdateTask({ task }: { task: TaskModel }) {
           </div>
         </fieldset>
 
-              <div className="Container">
-                  <button disabled={!isDirty || !isValid}>yalla</button>
-                  </div>
+        <div className="Container">
+          <button disabled={!isDirty || !isValid}>yalla</button>
+        </div>
       </form>
     </div>
   );

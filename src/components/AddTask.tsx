@@ -46,7 +46,7 @@ function AddTask(props: AddTaskProps) {
         notify.success(SccMsg.ADDED_TASK);
         store.dispatch(tasksAddedAction(response.data));
         props.handleClose()
-        navigate("/");
+        navigate("/list");
       })
       .catch(() => notify.error(ErrMsg.FAILED_ADDING));
   };

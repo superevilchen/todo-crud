@@ -11,9 +11,9 @@ class DevelopmentGlobals extends Globals{
 
 class ProductionGlobals extends Globals{
     public urls = {
-        tasks: "http://localhost:8080/api/v1/todolist/",
-        users: "http://localhost:8080/api/v1/todolist/user/",
-        admin: "http://localhost:8080/api/v1/todolist/admin/"
+        tasks: "/api/v1/todolist/",
+        users: "/api/v1/todolist/user/",
+        admin: "/api/v1/todolist/admin/"
 
     }
 }
