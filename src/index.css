@@ -87,11 +87,6 @@ td{
   padding: 0.5rem;
 }
 
-.IconContainer > button {
-  all: unset;
-  cursor: pointer;
-} 
-
 .Icon{
   width: 55px; 
   height: 55px;
